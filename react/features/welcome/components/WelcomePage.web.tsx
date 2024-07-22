@@ -188,13 +188,15 @@ class WelcomePage extends AbstractWelcomePage<IProps> {
      * @returns {ReactElement|null}
      */
     render() {
-        const { _moderatedRoomServiceUrl, t } = this.props;
-        const { DEFAULT_WELCOME_PAGE_LOGO_URL, DISPLAY_WELCOME_FOOTER } = interfaceConfig;
-        const showAdditionalCard = this._shouldShowAdditionalCard();
-        const showAdditionalContent = this._shouldShowAdditionalContent();
-        const showAdditionalToolbarContent = this._shouldShowAdditionalToolbarContent();
-        const contentClassName = showAdditionalContent ? 'with-content' : 'without-content';
-        const footerClassName = DISPLAY_WELCOME_FOOTER ? 'with-footer' : 'without-footer';
+const { _moderatedRoomServiceUrl, t } = this.props;
+// Override DISPLAY_WELCOME_FOOTER value to false to hide the footer
+const { DEFAULT_WELCOME_PAGE_LOGO_URL, DISPLAY_WELCOME_FOOTER: _ } = interfaceConfig;
+const DISPLAY_WELCOME_FOOTER = false; // Force footer to be hidden
+const showAdditionalCard = this._shouldShowAdditionalCard();
+const showAdditionalContent = this._shouldShowAdditionalContent();
+const showAdditionalToolbarContent = this._shouldShowAdditionalToolbarContent();
+const contentClassName = showAdditionalContent ? 'with-content' : 'without-content';
+const footerClassName = DISPLAY_WELCOME_FOOTER ? 'with-footer' : 'without-footer';
 
         return (
             <div
@@ -222,7 +224,7 @@ class WelcomePage extends AbstractWelcomePage<IProps> {
                             }
                         </div>
                         <h1 className = 'header-text-title'>
-                            {t('welcomepage.headerTitle')}
+                            {t('Online Academy Meeting App')}
                         </h1>
                         <span className = 'header-text-subtitle'>
                             {t('welcomepage.headerSubtitle')}

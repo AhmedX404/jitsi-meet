@@ -132,13 +132,8 @@ class Watermarks extends Component<IProps, State> {
             const { brandWatermarkLink } = this.state;
 
             if (brandWatermarkLink) {
-                reactElement = (
-                    <a
-                        href = { brandWatermarkLink }
-                        target = '_new'>
-                        { reactElement }
-                    </a>
-                );
+                // If you still need to use brandWatermarkLink for something else, you can do so here.
+                // Otherwise, you can remove this if block if it becomes unnecessary.
             }
         }
 
@@ -172,17 +167,15 @@ class Watermarks extends Component<IProps, State> {
                 className = { className }
                 style = { style } />);
 
-            if (_logoLink) {
-                reactElement = (
-                    <a
-                        aria-label = { t('jitsiHome', { logo: interfaceConfig.APP_NAME }) }
-                        className = { className }
-                        href = { _logoLink }
-                        target = '_new'>
-                        { reactElement }
-                    </a>
-                );
-            }
+                if (_logoLink) {
+                    reactElement = (
+                        <div
+                            aria-label={t('jitsiHome', { logo: interfaceConfig.APP_NAME })}
+                            className={className}>
+                            {reactElement}
+                        </div>
+                    );
+                }
         }
 
         return reactElement;
@@ -197,17 +190,14 @@ class Watermarks extends Component<IProps, State> {
     _renderPoweredBy() {
         if (this.state.showPoweredBy) {
             const { t } = this.props;
-
+    
             return (
-                <a
-                    className = 'poweredby'
-                    href = 'http://jitsi.org'
-                    target = '_new'>
-                    <span>{ t('poweredby') } jitsi.org</span>
-                </a>
+                <div className='poweredby'>
+                    <span>{t('poweredby')} jitsi.org</span>
+                </div>
             );
         }
-
+    
         return null;
     }
 }
