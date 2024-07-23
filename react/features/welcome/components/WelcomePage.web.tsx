@@ -229,37 +229,7 @@ const footerClassName = DISPLAY_WELCOME_FOOTER ? 'with-footer' : 'without-footer
                         <span className = 'header-text-subtitle'>
                             {t('welcomepage.headerSubtitle')}
                         </span>
-                        <div id = 'enter_room'>
-                            <div className = 'join-meeting-container'>
-                                <div className = 'enter-room-input-container'>
-                                    <form onSubmit = { this._onFormSubmit }>
-                                        <input
-                                            aria-disabled = 'false'
-                                            aria-label = 'Meeting name input'
-                                            autoFocus = { true }
-                                            className = 'enter-room-input'
-                                            id = 'enter_room_field'
-                                            onChange = { this._onRoomChange }
-                                            pattern = { ROOM_NAME_VALIDATE_PATTERN_STR }
-                                            placeholder = { this.state.roomPlaceholder }
-                                            ref = { this._setRoomInputRef }
-                                            type = 'text'
-                                            value = { this.state.room } />
-                                    </form>
-                                </div>
-
-                                <button
-                                    aria-disabled = 'false'
-                                    aria-label = 'Start meeting'
-                                    className = 'welcome-page-button'
-                                    id = 'enter_room_button'
-                                    onClick = { this._onFormSubmit }
-                                    tabIndex = { 0 }
-                                    type = 'button'>
-                                    {t('welcomepage.startMeeting')}
-                                </button>
-                            </div>
-                        </div>
+                       
                         {this._titleHasNotAllowCharacter && (
                             <div
                                 className = 'not-allow-title-character-div'
@@ -282,24 +252,22 @@ const footerClassName = DISPLAY_WELCOME_FOOTER ? 'with-footer' : 'without-footer
                     </div>
                 </div>
 
-                <div className = 'welcome-cards-container'>
-                    <div className = 'welcome-card-column'>
-                        <div className = 'welcome-tabs welcome-card welcome-card--blue'>
-                            {this._renderTabs()}
-                        </div>
-                        {showAdditionalCard
-                            ? <div
-                                className = 'welcome-card welcome-card--dark'
-                                ref = { this._setAdditionalCardRef } />
-                            : null}
-                    </div>
+                <div className='welcome-cards-container' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh', textAlign: 'center' }}>
+    <div className='welcome-card-column' style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
+        <h1>Need to rejoin your meet?</h1>
+        <div>
+            <img src="images/pngwing.com.png" style={{ width: '20%' }} />
+        </div>
+        <h4> Visit your room link again</h4>
+    </div>
 
-                    {showAdditionalContent
-                        ? <div
-                            className = 'welcome-page-content'
-                            ref = { this._setAdditionalContentRef } />
-                        : null}
-                </div>
+    {showAdditionalContent ? (
+        <div
+            className='welcome-page-content'
+            ref={this._setAdditionalContentRef}
+        />
+    ) : null}
+</div>
                 {DISPLAY_WELCOME_FOOTER && this._renderFooter()}
             </div>
 
